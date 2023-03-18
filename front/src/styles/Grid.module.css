@@ -1,0 +1,43 @@
+.grid {
+  background-color: #252525;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 800px;
+  height: 200px;
+  margin-bottom: 4rem;
+
+}
+
+.amount label,
+.amount input {
+  color: #fff;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toggleButtonOn {
+  background-color: #86d3ff;
+  color: #fff;
+}
+
+.toggleButtonOff {
+  background-color: #f44336;
+  color: #fff;
+}
+
+
+
+.react-switch-bg {
+  background-color: #f44336;
+}
+
+.react-switch-handle {
+  background-color: #fff;
+}
