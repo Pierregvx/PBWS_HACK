@@ -3,15 +3,18 @@ import { getToken, getTokenGrids } from '@/lib/apolloClient';
 import styles from '@/styles/Home.module.css';
 import { Grid } from './components/grid';
 import NavBar  from './components/NavBar';
-import { AppContext } from '@/lib/AppContext';
 import React from 'react';
+import ethers from "ethers"
 export default function Home({ tokens }) {
 
   const [selectedToken, setSelectedToken] = useState(null);
   const [grids, setGrids] = useState([]);
   const [amount, setAmount] = useState('');
-  const config = React.useContext(AppContext);
-  console.log(config);
+
+  const balanceETHUser = async(user,provider) =>{
+    return ethers.utils.formatEther(await provider.getBalance(user));
+
+  }
 
 
   const handleTokenClick = async (token) => {

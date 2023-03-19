@@ -5,49 +5,53 @@ import {
   getGasFee,
   printOp,
   getHttpRpcClient,
+  
 } from "../aaUtils";
+
+import { getAddress } from "ethers/lib/utils";
+import baseconfig from "../aaUtils/baseconfig.json";
 // @ts-ignore
-
-
-export default async function main(tkn:string,config) {
+export default async function main(
+  tkn,
+  config,
+  abi,
+  namefct,
+  parameters:any[]
+) {
+  console.log("test")
   const withPM: boolean = true
-  const ERC20_ABI = [
-    {
-      "inputs": [],
-      "name": "mint",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    }
-  ]
-  const provider = new ethers.providers.JsonRpcProvider(config.rpcUrl);
+  
+  const provider = new ethers.providers.JsonRpcProvider(baseconfig.rpcUrl);
   const paymasterAPI = withPM
-    ? getVerifyingPaymaster(config.paymasterUrl, config.entryPoint)
+    ? getVerifyingPaymaster(baseconfig.paymasterUrl, baseconfig.entryPoint)
     : undefined;
+
   const accountAPI = getSimpleAccount(
     provider,
-    config.signingKey,
-    config.entryPoint,
-    config.simpleAccountFactory,
+    baseconfig.signingKey,
+    baseconfig.entryPoint,
+    baseconfig.simpleAccountFactory,
     paymasterAPI
   );
 
   const token = ethers.utils.getAddress(tkn);
-  const erc20 = new ethers.Contract(token, ERC20_ABI, provider);
+  console.log(`Token address: ${token}`)
+  console.log(tkn)
+  const erc20 = new ethers.Contract(token, abi, provider);
  
-
+console.log([...parameters])
 
   const op = await accountAPI.createSignedUserOp({
     target: erc20.address,
-    data: erc20.interface.encodeFunctionData("mint", []),
+    data: erc20.interface.encodeFunctionData(namefct, [...parameters]),
     ...(await getGasFee(provider)),
   });
   console.log(`Signed UserOperation: ${await printOp(op)}`);
 
   const client = await getHttpRpcClient(
     provider,
-    config.bundlerUrl,
-    config.entryPoint
+    baseconfig.bundlerUrl,
+    baseconfig.entryPoint
   );
   const uoHash = await client.sendUserOpToBundler(op);
   console.log(`UserOpHash: ${uoHash}`);

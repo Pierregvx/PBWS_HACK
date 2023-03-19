@@ -18,7 +18,7 @@ export default function Account() {
   const handleConnect = () => {
     setIsConnecting(true);
   };
-
+  // console.log(initWallet(email,password));
   const handleCreateAccount = async () => {
     try {
       const accountAddress = await getAddressFromLogIn(email, password);
@@ -36,20 +36,9 @@ export default function Account() {
     await mint(email, adr, password).then(setIsDeployed(true));
   }
 
-  async function getObjectFromDatabase(mail, password) {
-    const user = await db.users.findOne({ mail, password });
-    if (!user) {
-      throw new Error("User not found");
-    }
 
-    // Assuming the user has a field called "objectId" which contains the ID of the object to access
-    const object = await db.objects.findOne({ id: user.objectId });
-    if (!object) {
-      throw new Error("Object not found");
-    }
-
-    return object;
-  }
+    
+  
 
   return (
     <div>
@@ -96,13 +85,13 @@ export default function Account() {
                   {
                     !isDeployed  && adr&& (
                       
-                      <button onClick={handleDeployAccount} className={styles.button} > Deploy contract & Get your NFT</button> 
+                      <button onClick={handleDeployAccount} className={styles.button} > Deploy contract & Get free Token</button> 
 
                     )
 
                   }
                   {isDeployed && (
-                    <button onClick={() =>{console.log("oi"); setConfig(initWallet())}} className={styles.button}> use this wallet</button>
+                    <button onClick={() =>{console.log("oi"); setConfig(initWallet(email,password))}} className={styles.button}> use this wallet</button>
                   )}
               
                 </div>

@@ -1,7 +1,7 @@
 import { ApolloProvider, ApolloClient, InMemoryCache, useQuery, gql } from '@apollo/client';
 export function createApolloClient() {
   return new ApolloClient({
-    uri: 'https://api.studio.thegraph.com/query/43214/core-subgraph-arbitrum/v0.0.2',
+    uri: 'https://api.studio.thegraph.com/query/43214/core-subgraph-arbitrum/v0.0.2/',
     cache: new InMemoryCache(),
   });
 }
@@ -20,9 +20,11 @@ const GRIDS_QUERY = gql`
       id
       token0 {
         name
+        symbol
       }
       token1 {
         name
+        symbol
       }
       price1
       price0
