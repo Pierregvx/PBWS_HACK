@@ -1,0 +1,87 @@
+/* Set box-sizing property to border-box to include padding and border in element's total width and height */
+* {
+  box-sizing: border-box;
+}
+
+/* Remove margin and padding from body */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #1f1f1f; /* Set the background color to a dark gray */
+  color: #f1f1f1; /* Set the text color to a light gray */
+}
+
+/* Set default font family, font size, and line height */
+html {
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Set max width and center content horizontally */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Set default font size for headings */
+h1, h2, h3, h4, h5, h6 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  color: #f1f1f1; /* Set the heading color to a light gray */
+}
+
+/* Set default margin for paragraphs */
+p {
+  margin: 0 0 1rem 0;
+}
+
+/* Add default styling for links */
+a {
+  color: #fff; /* Set the link color to white */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Modify the styles for buttons */
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #444;
+  color: #f1f1f1; /* Set the button text color to a light gray */
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #666;
+}
+
+/* Modify the styles for input fields */
+input[type="text"] {
+  padding: 0.5rem;
+  border: none;
+  background-color: #333;
+  color: #f1f1f1; /* Set the input text color to a light gray */
+}
+
+/* Modify the styles for lists */
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin: 0;
+  padding: 0;
+}
+
+/* Add a border to images */
+img {
+  border: 1px solid #ccc;
+}
